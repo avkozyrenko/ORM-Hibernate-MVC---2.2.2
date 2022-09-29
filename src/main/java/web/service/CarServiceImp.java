@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class CarServiceImp implements CarService {
+    private final CarDao carDao;
+
     @Autowired
-    private CarDao carDao;
+    public CarServiceImp(CarDao carDao) {
+        this.carDao = carDao;
+    }
 
     @Override
     public List<Car> createCarList() {
@@ -18,8 +22,7 @@ public class CarServiceImp implements CarService {
     }
 
     @Override
-    public List<Car> showCarList(int count) {
-        return carDao.showCarList(count);
-
+    public List<Car> getCarList(int count) {
+        return carDao.getCarList(count);
     }
 }

@@ -15,16 +15,19 @@ import java.util.Optional;
 @Controller
 public class CarController {
 
+    private final CarService carService;
+
     @Autowired
-    private CarService carService;
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping(value = "/cars")
-    public String showCars(@RequestParam(value = "count", required = false) Optional<Integer> count, Model model) {
+    public String getCars(@RequestParam(value = "count", required = false) Optional<Integer> count, Model model) {
 
-        List<Car> carsList =carService.createCarList();
-        model.addAttribute("carsTable", carService.showCarList(count.orElse(carsList.size())));
+        List<Car> carsList = carService.createCarList();
+        model.addAttribute("carsTable", carService.getCarList(count.orElse(carsList.size())));
 
         return "cars";
     }
-
 }

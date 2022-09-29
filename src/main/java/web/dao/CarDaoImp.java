@@ -29,7 +29,7 @@ public class CarDaoImp implements CarDao {
     }
 
     @Override
-    public List<Car> showCarList(int count) {
+    public List<Car> getCarList(int count) {
         List<Car> list1 = null;
         list1 = createCarList().stream().limit(count).collect(Collectors.toList());
         return list1;
